@@ -1,5 +1,4 @@
-﻿using MathNet.Numerics.LinearAlgebra.Complex;
-using System;
+﻿using System;
 using System.Linq;
 
 namespace CrossCutting

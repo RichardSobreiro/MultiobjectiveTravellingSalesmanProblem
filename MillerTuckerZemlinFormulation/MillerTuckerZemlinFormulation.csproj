@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="DataFiles\Data5x5.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="DataFiles\Data.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
