@@ -58,6 +58,7 @@ namespace MillerTuckerZemlinFormulation
                             cplex.Add(x[i]);
                         }
                         #endregion
+
                         #region [Objective Function]
                         INumExpr obj = cplex.NumExpr();
                         for (int i = 0; i < data.n; i++)
@@ -120,6 +121,8 @@ namespace MillerTuckerZemlinFormulation
                         }
                         #endregion
 
+                        cplex.SetParam(Cplex.DoubleParam.WorkMem, 2000.0);
+
                         Stopwatch stopWatch = new Stopwatch();
                         stopWatch.Start();
                         if (cplex.Solve())
@@ -169,15 +172,27 @@ namespace MillerTuckerZemlinFormulation
             }
             catch (ILOG.Concert.Exception ex)
             {
-                System.Console.WriteLine("Concert Error: " + ex);
+                StreamWriter errorfile = new StreamWriter("./ErrorLog.txt");
+                errorfile.WriteLine("Exception Kind: ILOG.Concert.Exception (Concert Error)");
+                errorfile.WriteLine("Message: " + ex.Message);
+                errorfile.WriteLine("StackTrace: " + ex.StackTrace);
+                errorfile.Close();
             }
             catch (InputDataReader.InputDataReaderException ex)
             {
-                System.Console.WriteLine("Data Error: " + ex);
+                StreamWriter errorfile = new StreamWriter("./ErrorLog.txt");
+                errorfile.WriteLine("Exception Kind: InputDataReader.InputDataReaderException (Data Error)");
+                errorfile.WriteLine("Message: " + ex.Message);
+                errorfile.WriteLine("StackTrace: " + ex.StackTrace);
+                errorfile.Close();
             }
             catch (System.IO.IOException ex)
             {
-                System.Console.WriteLine("IO Error: " + ex);
+                StreamWriter errorfile = new StreamWriter("./ErrorLog.txt");
+                errorfile.WriteLine("Exception Kind: System.IO.IOException (IO Error)");
+                errorfile.WriteLine("Message: " + ex.Message);
+                errorfile.WriteLine("StackTrace: " + ex.StackTrace);
+                errorfile.Close();
             }
         }
     }
