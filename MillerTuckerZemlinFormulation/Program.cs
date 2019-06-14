@@ -121,7 +121,8 @@ namespace MillerTuckerZemlinFormulation
                         }
                         #endregion
 
-                        cplex.SetParam(Cplex.DoubleParam.WorkMem, 6000.0);
+                        cplex.SetParam(Cplex.DoubleParam.WorkMem, 4000.0);
+                        cplex.SetParam(Cplex.Param.MIP.Strategy.File, 2);
                         cplex.SetParam(Cplex.DoubleParam.EpGap, 0.1);
 
                         Stopwatch stopWatch = new Stopwatch();
