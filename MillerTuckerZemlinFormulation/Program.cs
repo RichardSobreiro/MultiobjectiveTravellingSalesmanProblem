@@ -25,6 +25,7 @@ namespace MillerTuckerZemlinFormulation
 
                 timeNormalized = CrossCutting.CrossCutting.UnitVectorScaleDoubleArrayArray(time, n, n);
                 distanceNormalized = CrossCutting.CrossCutting.UnitVectorScaleDoubleArrayArray(distance, n, n);
+
             }
         }
 
@@ -124,6 +125,8 @@ namespace MillerTuckerZemlinFormulation
                         cplex.SetParam(Cplex.DoubleParam.WorkMem, 4000.0);
                         cplex.SetParam(Cplex.Param.MIP.Strategy.File, 2);
                         cplex.SetParam(Cplex.DoubleParam.EpGap, 0.1);
+                        cplex.SetParam(Cplex.BooleanParam.MemoryEmphasis, true);
+                        cplex.SetParam(Cplex.IntParam.VarSel, 4);
 
                         Stopwatch stopWatch = new Stopwatch();
                         stopWatch.Start();
