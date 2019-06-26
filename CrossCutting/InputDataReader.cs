@@ -3,18 +3,18 @@ using System.Globalization;
 
 public class InputDataReader {
    public class InputDataReaderException : System.Exception {
-      internal InputDataReaderException(string file) : base("'" + file + "' contains bad data format") {
+        public InputDataReaderException(string file) : base("'" + file + "' contains bad data format") {
          
       }
    }
-   
-   internal string[] _tokens;
-   internal int      _current;
-   internal string   _fileName;
 
-   internal NumberFormatInfo _nfi = NumberFormatInfo.InvariantInfo;
+    public string[] _tokens;
+    public int      _current;
+    public string   _fileName;
 
-   internal string NextToken() {
+    public NumberFormatInfo _nfi = NumberFormatInfo.InvariantInfo;
+
+    public string NextToken() {
       string token = _tokens[_current++];
       while ( token == "" )
          token = _tokens[_current++];
@@ -40,19 +40,19 @@ public class InputDataReader {
       _current = 0;
    }
 
-   internal double ReadDouble() {
+    public double ReadDouble() {
       return Double.Parse(NextToken(), _nfi);
    }
-     
-   internal int ReadInt() {
+
+    public int ReadInt() {
       return Int32.Parse(NextToken(), _nfi);
    }
 
-   internal string ReadString() {
+    public string ReadString() {
       return NextToken();
    }
-   
-   internal double[] ReadDoubleArray() {
+
+    public double[] ReadDoubleArray() {
       string token = NextToken(); // Read the '['
       
       if ( token != "[" )
@@ -84,7 +84,7 @@ public class InputDataReader {
       return res;
    }
 
-   internal double[][] ReadDoubleArrayArray() {
+   public double[][] ReadDoubleArrayArray() {
       string token = NextToken(); // Read the '['
       
       if ( token != "[" )
@@ -118,7 +118,7 @@ public class InputDataReader {
       return res;
    }
 
-   internal int[] ReadIntArray() {
+    public int[] ReadIntArray() {
       string token = NextToken(); // Read the '['
       
       if ( token != "[" )
@@ -149,7 +149,7 @@ public class InputDataReader {
       return res;
    }
 
-   internal int[][] ReadIntArrayArray() {
+    public int[][] ReadIntArrayArray() {
       string token = NextToken(); // Read the '['
       
       if ( token != "[" )
@@ -183,7 +183,7 @@ public class InputDataReader {
       return res;
    }
 
-   internal string[] ReadStringArray() {
+    public string[] ReadStringArray() {
       string token = NextToken(); // Read the '['
       
       if ( token != "[" )
@@ -214,7 +214,7 @@ public class InputDataReader {
       return res;
    }
 
-   internal string[][] ReadStringArrayArray() {
+    public string[][] ReadStringArrayArray() {
       string token = NextToken(); // Read the '['
       
       if ( token != "[" )
