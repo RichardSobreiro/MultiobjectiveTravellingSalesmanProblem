@@ -125,7 +125,6 @@ namespace DantzigFulkersonJohnsonFormulation
                             double[][] sol_x = new double[data.n][];
                             for (int i = 0; i < data.n; i++)
                                 sol_x[i] = cplex.GetValues(x[i]);
-                            //int shortestLenght = ShortestCicleInSelectedPaths(sol_x);
                             int[] tour = FindSubTour(sol_x);
                             if (tour.Length < data.n)
                             {
@@ -227,47 +226,6 @@ namespace DantzigFulkersonJohnsonFormulation
             {
                 return false;
             }
-        }
-
-        static int ShortestCicleInSelectedPaths(double[][] sol_x)
-        {
-            int n = sol_x.Length;
-            bool[] visited = new bool[n];
-
-            List<int> lenghts = new List<int>();
-            int lenght = 0;
-
-            int index = 0;
-            int nextIndex = 0;
-            while (index < n)
-            {
-                nextIndex = index;
-                while (true)
-                {
-                    if (visited[nextIndex] == true)
-                        break;
-
-                    visited[nextIndex] = true;
-
-                    for (int j = 0; j < n; j++)
-                    {
-                        if (sol_x[nextIndex][j] > 0.5)
-                        {
-                            nextIndex = j;
-                            lenght++;
-                            break;
-                        }
-                    }
-                }
-                if(lenght > 0)
-                {
-                    lenghts.Add(lenght);
-                }
-                lenght = 0;
-                index++;
-            }
-
-            return lenghts.Min();
         }
 
         static int[] FindSubTour(double[][] sol)
